@@ -41,3 +41,15 @@ sudo nano /etc/hosts
 Puerto 80
 
 <img src="https://github.com/user-attachments/assets/71d7e123-b806-4672-8c5c-5e70935b6ef3">
+
+Registrar usuario
+
+```plaintext
+http://yummy.htb/register
+```
+
+Loguearse
+
+```plaintext
+http://yummy.htb/login
+```
