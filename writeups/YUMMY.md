@@ -53,3 +53,13 @@ Loguearse
 ```plaintext
 http://yummy.htb/login
 ```
+
+```plaintext
+http://yummy.htb/dashboard
+```
+
+Reservar una mesa con el mail registrado
+
+```plaintext
+http://yummy.htb/#book-a-table
+```
