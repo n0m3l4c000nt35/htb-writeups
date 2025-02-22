@@ -29,3 +29,11 @@ PORT   STATE SERVICE VERSION
 |_http-server-header: Caddy
 Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 ```
+
+```bash
+sudo nano /etc/hosts
+```
+
+```plaintext
+<target-ip> yummy.htb
+```
