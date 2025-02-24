@@ -175,7 +175,30 @@ _laurel:x:996:987::/var/log/laurel:/bin/false
 
 Caddy config files `/etc/caddy/Caddyfile`
 
+Modificar la solicitud para ver el archivo de configuración de Caddy
+
 ```
 https://caddyserver.com/docs/conventions#your-config-files
 ```
 
+```
+HTTP/1.1 200 OK
+Cache-Control: no-cache
+Content-Disposition: attachment; filename=Caddyfile
+Content-Length: 178
+Content-Type: application/octet-stream
+Date: Mon, 24 Feb 2025 22:11:10 GMT
+Etag: "1715978794.806761-178-521933300"
+Last-Modified: Fri, 17 May 2024 20:46:34 GMT
+Server: Caddy
+
+:80 {
+    @ip {
+        header_regexp Host ^(\d{1,3}\.){3}\d{1,3}$
+    }
+    redir @ip http://yummy.htb{uri}
+    reverse_proxy 127.0.0.1:3000 {
+    header_down -Server  
+    }
+}
+```
