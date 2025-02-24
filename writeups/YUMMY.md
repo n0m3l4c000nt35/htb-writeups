@@ -3,12 +3,24 @@
 </div>
 
 ```bash
-ping -c 1 10.10.11.36
+ping -c 1 10.10.11.36 -R
 
-PING 10.10.11.36 (10.10.11.36) 56(84) bytes of data.
-64 bytes from 10.10.11.36: icmp_seq=1 ttl=63 time=179 ms
+PING 10.10.11.36 (10.10.11.36) 56(124) bytes of data.
+64 bytes from 10.10.11.36: icmp_seq=1 ttl=63 time=176 ms
+RR: 	10.10.14.191
+	10.10.10.2
+	10.10.11.36
+	10.10.11.36
+	10.10.14.1
+	10.10.14.191
 
 --- 10.10.11.36 ping statistics ---
 1 packets transmitted, 1 received, 0% packet loss, time 0ms
-rtt min/avg/max/mdev = 179.187/179.187/179.187/0.000 ms
+rtt min/avg/max/mdev = 175.923/175.923/175.923/0.000 ms
+```
+
+TTL 63: Máquina Linux
+
+```bash
+
 ```
