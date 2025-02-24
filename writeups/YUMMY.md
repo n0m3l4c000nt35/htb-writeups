@@ -246,5 +246,86 @@ SHELL=/bin/sh
 */1 * * * * www-data /bin/bash /data/scripts/app_backup.sh
 */15 * * * * mysql /bin/bash /data/scripts/table_cleanup.sh
 * * * * * mysql /bin/bash /data/scripts/dbmonitor.sh
+```
 
+Archivo `/data/scripts/app_backup.sh`
+
+```
+HTTP/1.1 200 OK
+Cache-Control: no-cache
+Content-Disposition: attachment; filename=app_backup.sh
+Content-Length: 90
+Content-Type: text/x-sh; charset=utf-8
+Date: Mon, 24 Feb 2025 22:22:49 GMT
+Etag: "1727364692.0530195-90-57808346"
+Last-Modified: Thu, 26 Sep 2024 15:31:32 GMT
+Server: Caddy
+
+#!/bin/bash
+
+cd /var/www
+/usr/bin/rm backupapp.zip
+/usr/bin/zip -r backupapp.zip /opt/
+```
+
+Archivo `/data/scripts/table_cleanup.sh`
+
+```
+HTTP/1.1 200 OK
+Cache-Control: no-cache
+Content-Disposition: attachment; filename=table_cleanup.sh
+Content-Length: 114
+Content-Type: text/x-sh; charset=utf-8
+Date: Mon, 24 Feb 2025 22:23:46 GMT
+Etag: "1727364676.2200189-114-4196800022"
+Last-Modified: Thu, 26 Sep 2024 15:31:16 GMT
+Server: Caddy
+
+#!/bin/sh
+
+/usr/bin/mysql -h localhost -u chef yummy_db -p'3wDo7gSRZIwIHRxZ!' < /data/scripts/sqlappointments.sql
+```
+
+Archivo `/data/scripts/dbmonitor.sh`
+
+```
+HTTP/1.1 200 OK
+Cache-Control: no-cache
+Content-Disposition: attachment; filename=dbmonitor.sh
+Content-Length: 1336
+Content-Type: text/x-sh; charset=utf-8
+Date: Mon, 24 Feb 2025 22:24:36 GMT
+Etag: "1727364676.2020187-1336-3434681599"
+Last-Modified: Thu, 26 Sep 2024 15:31:16 GMT
+Server: Caddy
+
+#!/bin/bash
+
+timestamp=$(/usr/bin/date)
+service=mysql
+response=$(/usr/bin/systemctl is-active mysql)
+
+if [ "$response" != 'active' ]; then
+    /usr/bin/echo "{\"status\": \"The database is down\", \"time\": \"$timestamp\"}" > /data/scripts/dbstatus.json
+    /usr/bin/echo "$service is down, restarting!!!" | /usr/bin/mail -s "$service is down!!!" root
+    latest_version=$(/usr/bin/ls -1 /data/scripts/fixer-v* 2>/dev/null | /usr/bin/sort -V | /usr/bin/tail -n 1)
+    /bin/bash "$latest_version"
+else
+    if [ -f /data/scripts/dbstatus.json ]; then
+        if grep -q "database is down" /data/scripts/dbstatus.json 2>/dev/null; then
+            /usr/bin/echo "The database was down at $timestamp. Sending notification."
+            /usr/bin/echo "$service was down at $timestamp but came back up." | /usr/bin/mail -s "$service was down!" root
+            /usr/bin/rm -f /data/scripts/dbstatus.json
+        else
+            /usr/bin/rm -f /data/scripts/dbstatus.json
+            /usr/bin/echo "The automation failed in some way, attempting to fix it."
+            latest_version=$(/usr/bin/ls -1 /data/scripts/fixer-v* 2>/dev/null | /usr/bin/sort -V | /usr/bin/tail -n 1)
+            /bin/bash "$latest_version"
+        fi
+    else
+        /usr/bin/echo "Response is OK."
+    fi
+fi
+
+[ -f dbstatus.json ] && /usr/bin/rm -f dbstatus.json
 ```
