@@ -54,3 +54,5 @@ http://yummy.htb [200 OK] Bootstrap, Country[RESERVED][ZZ], Email[info@yummy.htb
 Registrar usuario
 
 Loguearse
+
+Reservar mesa
