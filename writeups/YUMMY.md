@@ -42,3 +42,11 @@ PORT   STATE SERVICE VERSION
 |_http-server-header: Caddy
 Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 ```
+
+Agregar al archivo `/etc/hosts` `10.10.11.36 yummy.htb`
+
+```bash
+whatweb http://yummy.htb
+
+http://yummy.htb [200 OK] Bootstrap, Country[RESERVED][ZZ], Email[info@yummy.htb], Frame, HTML5, HTTPServer[Caddy], IP[10.10.11.36], Lightbox, Script, Title[Yummy]
+```
