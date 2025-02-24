@@ -56,3 +56,33 @@ Registrar usuario
 Loguearse
 
 Reservar mesa
+
+Descargar archivo `.ics`
+
+```bash
+file Yummy_reservation_20250224_215007.ics
+
+Yummy_reservation_20250224_215007.ics: vCalendar calendar file
+```
+
+```bash
+exiftool Yummy_reservation_20250224_215007.ics
+
+ExifTool Version Number         : 12.57
+File Name                       : Yummy_reservation_20250224_215007.ics
+Directory                       : .
+File Size                       : 268 bytes
+File Modification Date/Time     : 2025:02:24 18:50:08-03:00
+File Access Date/Time           : 2025:02:24 18:50:19-03:00
+File Inode Change Date/Time     : 2025:02:24 18:50:11-03:00
+File Permissions                : -rw-r--r--
+File Type                       : ICS
+File Type Extension             : ics
+MIME Type                       : text/calendar
+VCalendar Version               : 2.0
+Software                        : ics.py - http://git.io/lLljaA
+Description                     : Email: test@test.com.Number of People: 1.Message: test
+Date Time Start                 : 2025:02:24 00:00:00Z
+Summary                         : test
+UID                             : 74907f64-f16d-4271-a2b8-b8c1c6d6919e@7490.org
+```
